@@ -33,6 +33,8 @@ const initializeTheme = () => {
 
 export const AppContext = createContext(null);
 
+export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
+
 export const AppProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token") || null);
   const [user, setUser] = useState(null);
@@ -56,7 +58,7 @@ export const AppProvider = ({ children }) => {
     if (!token) return;
 
     try {
-      const response = await fetch("/api/user", {
+      const response = await fetch(`${API_BASE_URL}/api/user`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

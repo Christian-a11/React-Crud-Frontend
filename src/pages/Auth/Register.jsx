@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { AppContext } from "../../Context/AppContext";
+import { AppContext, API_BASE_URL } from "../../Context/AppContext";
 import { useNavigate, Link } from "react-router-dom";
 export default function Register() {
   const [formData, setFormData] = useState({
@@ -15,7 +15,7 @@ export default function Register() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const response = await fetch("/api/register", {
+    const response = await fetch(`${API_BASE_URL}/api/register`, {
       method: "POST",
       body: JSON.stringify(formData),
     });

@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { AppContext } from "../Context/AppContext.jsx";
+import { AppContext, API_BASE_URL } from "../Context/AppContext.jsx";
 import { Link } from "react-router-dom";
 export default function Home() {
   const { theme } = useContext(AppContext);
@@ -12,7 +12,7 @@ export default function Home() {
   async function fetchPosts(page = 1) {
     setLoading(true);
     try {
-      const response = await fetch(`/api/posts?page=${page}`);
+      const response = await fetch(`${API_BASE_URL}/api/posts?page=${page}`);
       const data = await response.json();
       if (response.ok) {
         setPosts(data.data);

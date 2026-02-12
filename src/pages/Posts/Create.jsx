@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { AppContext } from "../../Context/AppContext";
+import { AppContext, API_BASE_URL } from "../../Context/AppContext";
 
 export default function Create() {
   const [formData, setFormData] = useState({
@@ -13,7 +13,7 @@ export default function Create() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const response = await fetch("/api/posts", {
+    const response = await fetch(`${API_BASE_URL}/api/posts`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,

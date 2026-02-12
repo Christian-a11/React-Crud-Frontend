@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
-import { AppContext } from "../../Context/AppContext";
+import { AppContext, API_BASE_URL } from "../../Context/AppContext";
 export default function Show() {
   const [post, setPost] = useState(null);
   const { id } = useParams();
@@ -8,7 +8,7 @@ export default function Show() {
   const navigate = useNavigate();
 
   async function fetchPost() {
-    const response = await fetch(`/api/posts/${id}`);
+    const response = await fetch(`${API_BASE_URL}/api/posts/${id}`);
     const data = await response.json();
     if (response.ok) {
       setPost(data.post || data);
@@ -30,7 +30,7 @@ export default function Show() {
 
     if (!post) return;
     if (user?.id === post.user_id) {
-      const response = await fetch(`/api/posts/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/posts/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,

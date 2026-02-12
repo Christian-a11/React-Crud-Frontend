@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { AppContext } from "../../Context/AppContext";
+import { AppContext, API_BASE_URL } from "../../Context/AppContext";
 
 export default function Update() {
   const { id } = useParams();
@@ -14,7 +14,7 @@ export default function Update() {
 
   async function fetchPosts() {
     try {
-      const response = await fetch(`/api/posts/${id}`);
+      const response = await fetch(`${API_BASE_URL}/api/posts/${id}`);
       const data = await response.json(); // data = { post: {...}, user: {...} }
 
       if (response.ok) {
@@ -51,7 +51,7 @@ export default function Update() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const response = await fetch(`/api/posts/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/api/posts/${id}`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${token}`,
