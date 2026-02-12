@@ -26,7 +26,6 @@ export default function Update() {
 
         // Ownership check
         if (parseInt(postData.user_id) !== parseInt(user.id)) {
-          console.error("Unauthorized: User does not own this post");
           navigate("/");
           return;
         }
@@ -37,14 +36,9 @@ export default function Update() {
           body: postData.body,
         });
       } else {
-        console.error("Failed to fetch post:", {
-          status: response.status,
-          data: data,
-        });
         navigate("/");
       }
     } catch (error) {
-      console.error("Error fetching post:", error);
       navigate("/");
     }
   }
@@ -70,10 +64,6 @@ export default function Update() {
 
     const data = await response.json();
     if (!response.ok) {
-      console.error("Post Update Error:", {
-        status: response.status,
-        data: data,
-      });
       if (data.errors) {
         setErrors(data.errors);
       }
@@ -85,7 +75,6 @@ export default function Update() {
         body: "",
       });
     }
-    console.log(data);
   }
   return (
     <div

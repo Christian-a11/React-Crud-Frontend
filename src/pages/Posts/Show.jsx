@@ -20,14 +20,9 @@ export default function Show() {
       const data = await response.json();
       if (response.ok) {
         setPost(data.post || data);
-      } else {
-        console.error("Failed to fetch post:", {
-          status: response.status,
-          data: data,
-        });
       }
     } catch (error) {
-      console.error("Error fetching post:", error);
+      // Error handling
     } finally {
       setLoading(false);
     }
@@ -56,11 +51,6 @@ export default function Show() {
       const data = await response.json();
       if (response.ok) {
         navigate("/");
-      } else {
-        console.error("Failed to delete post:", {
-          status: response.status,
-          data: data,
-        });
       }
     }
   }

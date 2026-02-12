@@ -80,10 +80,7 @@ export const AppProvider = ({ children }) => {
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
-        console.error("User Data Fetch Error:", {
-          status: response.status,
-          data: errorData,
-        });
+        // User Data Fetch Error handled silently
         throw new Error("Unauthorized");
       }
 
