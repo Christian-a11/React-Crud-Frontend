@@ -65,28 +65,28 @@ export default function Show() {
           <div
             className={`overflow-hidden rounded-2xl border ${theme === "dark" ? "bg-gray-800/50 border-gray-700" : "bg-white border-gray-200"}`}
           >
-            <div className="p-8 sm:p-12">
+            <div className="p-6 sm:p-12">
               <div className="mb-8">
                 <h1
-                  className={`text-4xl sm:text-5xl font-extrabold mb-6 tracking-tight ${theme === "dark" ? "text-white" : "text-gray-900"}`}
+                  className={`text-3xl sm:text-5xl font-extrabold mb-6 tracking-tight ${theme === "dark" ? "text-white" : "text-gray-900"}`}
                 >
                   {post.title}
                 </h1>
                 <div
-                  className={`flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-6 border-b ${theme === "dark" ? "border-gray-700" : "border-gray-200"}`}
+                  className={`flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 pb-6 border-b ${theme === "dark" ? "border-gray-700" : "border-gray-200"}`}
                 >
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xl font-bold">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-lg sm:text-xl font-bold">
                       {post.user?.name?.charAt(0)?.toUpperCase()}
                     </div>
                     <div>
                       <p
-                        className={`font-semibold ${theme === "dark" ? "text-white" : "text-gray-900"}`}
+                        className={`font-semibold text-sm sm:text-base ${theme === "dark" ? "text-white" : "text-gray-900"}`}
                       >
                         {post.user?.name || "Unknown"}
                       </p>
                       <p
-                        className={`text-sm ${theme === "dark" ? "text-gray-300" : "text-gray-600"}`}
+                        className={`text-xs sm:text-sm ${theme === "dark" ? "text-gray-300" : "text-gray-600"}`}
                       >
                         {new Date(post.created_at).toLocaleDateString([], {
                           month: "long",
@@ -98,17 +98,17 @@ export default function Show() {
                   </div>
 
                   {user?.id === post.user_id && (
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 sm:gap-3">
                       <Link
                         to={`/posts/${post.id}/update`}
-                        className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg text-white font-semibold shadow-md hover:shadow-lg transition-all duration-200 text-sm ${theme === "dark" ? "bg-indigo-600 hover:bg-indigo-500" : "bg-indigo-600 hover:bg-indigo-700"}`}
+                        className={`flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-white font-semibold shadow-md hover:shadow-lg transition-all duration-200 text-sm ${theme === "dark" ? "bg-indigo-600 hover:bg-indigo-500" : "bg-indigo-600 hover:bg-indigo-700"}`}
                       >
                         ✏️ Edit
                       </Link>
-                      <form onSubmit={handleDelete}>
+                      <form onSubmit={handleDelete} className="flex-1 sm:flex-none">
                         <button
                           type="submit"
-                          className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg text-white font-semibold shadow-md hover:shadow-lg transition-all duration-200 text-sm ${theme === "dark" ? "bg-red-600 hover:bg-red-700" : "bg-red-500 hover:bg-red-600"}`}
+                          className={`w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-white font-semibold shadow-md hover:shadow-lg transition-all duration-200 text-sm ${theme === "dark" ? "bg-red-600 hover:bg-red-700" : "bg-red-500 hover:bg-red-600"}`}
                         >
                           🗑️ Delete
                         </button>
@@ -119,10 +119,10 @@ export default function Show() {
               </div>
 
               <div
-                className={`max-w-none prose prose-lg lg:prose-xl mb-8 ${theme === "dark" ? "prose-invert" : ""} prose-slate`}
+                className={`max-w-none prose prose-slate mb-8 ${theme === "dark" ? "prose-invert" : ""}`}
               >
                 <p
-                  className={`text-lg leading-relaxed whitespace-pre-wrap ${theme === "dark" ? "text-gray-300" : "text-gray-700"}`}
+                  className={`text-base sm:text-lg leading-relaxed whitespace-pre-wrap ${theme === "dark" ? "text-gray-300" : "text-gray-700"}`}
                 >
                   {post.body}
                 </p>
@@ -130,11 +130,11 @@ export default function Show() {
             </div>
 
             <div
-              className={`px-8 sm:px-12 py-6 border-t ${theme === "dark" ? "bg-gray-800/50 border-gray-700" : "bg-gray-50 border-gray-200"}`}
+              className={`px-6 sm:px-12 py-6 border-t ${theme === "dark" ? "bg-gray-800/50 border-gray-700" : "bg-gray-50 border-gray-200"}`}
             >
               <Link
                 to="/"
-                className={`inline-flex items-center gap-2 font-semibold transition-colors group ${theme === "dark" ? "text-indigo-400 hover:text-indigo-300" : "text-indigo-600 hover:text-indigo-700"}`}
+                className={`inline-flex items-center gap-2 font-semibold transition-colors group text-sm sm:text-base ${theme === "dark" ? "text-indigo-400 hover:text-indigo-300" : "text-indigo-600 hover:text-indigo-700"}`}
               >
                 <span className="group-hover:-translate-x-1 transition-transform">
                   ←

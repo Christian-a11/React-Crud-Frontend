@@ -83,21 +83,21 @@ export default function Home() {
             {posts.map((post) => (
               <div
                 key={post.id}
-                className={`p-6 sm:p-8 group cursor-pointer rounded-xl border transition-all duration-300 ${theme === "dark" ? "bg-gray-800/50 border-gray-700 hover:bg-gray-800 hover:border-indigo-500" : "bg-white border-gray-200 hover:shadow-lg hover:border-indigo-300"}`}
+                className={`p-5 sm:p-8 group cursor-pointer rounded-xl border transition-all duration-300 ${theme === "dark" ? "bg-gray-800/50 border-gray-700 hover:bg-gray-800 hover:border-indigo-500" : "bg-white border-gray-200 hover:shadow-lg hover:border-indigo-300"}`}
               >
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
                   <div className="flex-1 min-w-0">
                     <h2
-                      className={`text-2xl sm:text-3xl font-bold mb-3 transition-colors line-clamp-2 ${theme === "dark" ? "text-white group-hover:text-indigo-400" : "text-black group-hover:text-indigo-600"}`}
+                      className={`text-xl sm:text-3xl font-bold mb-3 transition-colors line-clamp-2 ${theme === "dark" ? "text-white group-hover:text-indigo-400" : "text-black group-hover:text-indigo-600"}`}
                     >
                       {post.title}
                     </h2>
 
                     <div
-                      className={`flex flex-wrap items-center gap-3 text-sm mb-4 ${theme === "dark" ? "text-gray-300" : "text-gray-600"}`}
+                      className={`flex flex-wrap items-center gap-2 sm:gap-3 text-sm mb-4 ${theme === "dark" ? "text-gray-300" : "text-gray-600"}`}
                     >
-                      <div className="flex items-center gap-2">
-                        <span className="text-lg">👤</span>
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-base sm:text-lg">👤</span>
                         <span
                           className={`font-medium ${theme === "dark" ? "text-white" : "text-gray-800"}`}
                         >
@@ -125,7 +125,7 @@ export default function Home() {
                     </div>
 
                     <p
-                      className={`leading-relaxed line-clamp-3 ${theme === "dark" ? "text-gray-300" : "text-gray-600"}`}
+                      className={`leading-relaxed line-clamp-3 text-sm sm:text-base ${theme === "dark" ? "text-gray-300" : "text-gray-600"}`}
                     >
                       {post.body}
                     </p>
@@ -133,7 +133,7 @@ export default function Home() {
 
                   <Link
                     to={`/posts/${post.id}`}
-                    className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-white font-semibold shadow-md transition-all duration-200 whitespace-nowrap flex-shrink-0 mt-4 sm:mt-0 ${theme === "dark" ? "bg-indigo-600 hover:bg-indigo-500" : "bg-indigo-600 hover:bg-indigo-700"} transform sm:group-hover:translate-x-2`}
+                    className={`inline-flex items-center justify-center gap-2 px-4 py-2.5 sm:px-5 rounded-lg text-white font-semibold shadow-md transition-all duration-200 whitespace-nowrap flex-shrink-0 mt-2 sm:mt-0 ${theme === "dark" ? "bg-indigo-600 hover:bg-indigo-500" : "bg-indigo-600 hover:bg-indigo-700"} transform sm:group-hover:translate-x-2 text-sm sm:text-base`}
                   >
                     Read More
                     <span className="transition-transform">→</span>
@@ -145,12 +145,12 @@ export default function Home() {
             {/* Pagination Controls - Floating Modal */}
             {lastPage > 1 && (
               <div
-                className={`fixed bottom-8 left-1/2 -translate-x-1/2 flex flex-wrap items-center justify-center gap-2 py-5 px-6 rounded-2xl backdrop-blur-lg shadow-2xl border ${theme === "dark" ? "bg-gray-800/60 border-gray-700/50 shadow-gray-900/50" : "bg-white/60 border-gray-200/50 shadow-gray-400/50"}`}
+                className={`fixed bottom-6 left-1/2 -translate-x-1/2 flex items-center justify-center gap-1.5 sm:gap-2 py-3 px-4 sm:py-5 sm:px-6 rounded-2xl backdrop-blur-lg shadow-2xl border ${theme === "dark" ? "bg-gray-800/80 border-gray-700/50 shadow-gray-900/50" : "bg-white/80 border-gray-200/50 shadow-gray-400/50"}`}
               >
                 <button
                   onClick={() => fetchPosts(currentPage - 1)}
                   disabled={currentPage === 1}
-                  className={`px-4 py-2 rounded-lg font-semibold transition-all ${
+                  className={`px-3 py-2 sm:px-4 sm:py-2 rounded-lg font-semibold transition-all text-xs sm:text-base ${
                     currentPage === 1
                       ? theme === "dark"
                         ? "bg-gray-700 text-gray-500 cursor-not-allowed"
@@ -160,35 +160,22 @@ export default function Home() {
                         : "bg-indigo-600 text-white hover:bg-indigo-700"
                   }`}
                 >
-                  ← Previous
+                  <span className="sm:hidden">←</span>
+                  <span className="hidden sm:inline">← Previous</span>
                 </button>
 
-                <div className="flex flex-wrap justify-center gap-1">
-                  {Array.from({ length: lastPage }, (_, i) => i + 1).map(
-                    (page) => (
-                      <button
-                        key={page}
-                        onClick={() => fetchPosts(page)}
-                        className={`px-3 py-2 rounded-lg font-semibold transition-all ${
-                          currentPage === page
-                            ? theme === "dark"
-                              ? "bg-indigo-600 text-white"
-                              : "bg-indigo-600 text-white"
-                            : theme === "dark"
-                              ? "bg-gray-700 text-gray-300 hover:bg-gray-600"
-                              : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                        }`}
-                      >
-                        {page}
-                      </button>
-                    ),
-                  )}
+                <div className="flex items-center gap-1 sm:gap-1.5 px-1 sm:px-2">
+                  <span
+                    className={`text-xs sm:text-sm font-bold ${theme === "dark" ? "text-gray-300" : "text-gray-600"}`}
+                  >
+                    {currentPage} / {lastPage}
+                  </span>
                 </div>
 
                 <button
                   onClick={() => fetchPosts(currentPage + 1)}
                   disabled={currentPage === lastPage}
-                  className={`px-4 py-2 rounded-lg font-semibold transition-all ${
+                  className={`px-3 py-2 sm:px-4 sm:py-2 rounded-lg font-semibold transition-all text-xs sm:text-base ${
                     currentPage === lastPage
                       ? theme === "dark"
                         ? "bg-gray-700 text-gray-500 cursor-not-allowed"
@@ -198,7 +185,8 @@ export default function Home() {
                         : "bg-indigo-600 text-white hover:bg-indigo-700"
                   }`}
                 >
-                  Next →
+                  <span className="sm:hidden">→</span>
+                  <span className="hidden sm:inline">Next →</span>
                 </button>
               </div>
             )}

@@ -51,12 +51,12 @@ export default function Layout() {
               </span>
             </Link>
           </div>
-          <div className="flex items-center gap-3 sm:gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
             {user ? (
-              <div className="flex items-center gap-4 sm:gap-6">
-                <div className="hidden sm:block">
+              <div className="flex items-center gap-2 sm:gap-6">
+                <div className="hidden md:block">
                   <p
-                    className={`text-sm ${
+                    className={`text-xs ${
                       theme === "dark" ? "text-gray-300" : "text-gray-600"
                     }`}
                   >
@@ -70,36 +70,38 @@ export default function Layout() {
                     {user.name}
                   </p>
                 </div>
-                <div className="flex items-center gap-2 sm:gap-3">
+                <div className="flex items-center gap-2">
                   <Link
                     to={"/create"}
-                    className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg text-white font-semibold shadow-md hover:shadow-lg transition-all duration-200 text-sm ${
+                    className={`inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg text-white font-semibold shadow-md hover:shadow-lg transition-all duration-200 text-sm ${
                       theme === "dark"
                         ? "bg-indigo-600 hover:bg-indigo-500"
                         : "bg-indigo-600 hover:bg-indigo-700"
                     }`}
                   >
-                    <span className="hidden sm:inline">➕</span> New Post
+                    <span>➕</span>
+                    <span className="hidden xs:inline">New Post</span>
                   </Link>
                   <form onSubmit={handleLogout}>
                     <button
-                      className={`px-4 py-2 rounded-lg text-white font-semibold shadow-md hover:shadow-lg transition-all duration-200 text-sm ${
+                      className={`px-3 sm:px-4 py-2 rounded-lg text-white font-semibold shadow-md hover:shadow-lg transition-all duration-200 text-sm ${
                         theme === "dark"
                           ? "bg-red-600 hover:bg-red-700"
                           : "bg-red-500 hover:bg-red-600"
                       }`}
                       type="submit"
                     >
-                      Logout
+                      <span className="xs:hidden">🚪</span>
+                      <span className="hidden xs:inline">Logout</span>
                     </button>
                   </form>
                 </div>
               </div>
             ) : (
-              <div className="flex gap-2 sm:gap-3">
+              <div className="flex gap-1.5 sm:gap-3">
                 <Link
                   to={"/login"}
-                  className={`px-3.5 py-2 rounded-lg font-medium transition-colors text-sm ${
+                  className={`px-2.5 py-2 rounded-lg font-medium transition-colors text-sm ${
                     theme === "dark"
                       ? "text-gray-300 hover:bg-gray-800"
                       : "text-gray-600 hover:bg-gray-100"
@@ -109,7 +111,7 @@ export default function Layout() {
                 </Link>
                 <Link
                   to={"/register"}
-                  className={`px-3.5 py-2 rounded-lg text-white font-semibold shadow-md hover:shadow-lg transition-all duration-200 text-sm ${
+                  className={`px-2.5 py-2 rounded-lg text-white font-semibold shadow-md hover:shadow-lg transition-all duration-200 text-sm ${
                     theme === "dark"
                       ? "bg-indigo-600 hover:bg-indigo-500"
                       : "bg-indigo-600 hover:bg-indigo-700"
@@ -120,7 +122,7 @@ export default function Layout() {
               </div>
             )}
             <div
-              className={`h-6 w-px hidden sm:block ${
+              className={`h-6 w-px hidden md:block ${
                 theme === "dark" ? "bg-slate-700" : "bg-slate-200"
               }`}
             ></div>
