@@ -33,7 +33,20 @@ const initializeTheme = () => {
 
 export const AppContext = createContext(null);
 
-export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
+const getBaseUrl = () => {
+  let base = import.meta.env.VITE_API_BASE_URL || "";
+  // Remove trailing slash if present
+  if (base.endsWith("/")) {
+    base = base.slice(0, -1);
+  }
+  // Remove trailing /api if present (since we add it in the components)
+  if (base.endsWith("/api")) {
+    base = base.slice(0, -4);
+  }
+  return base;
+};
+
+export const API_BASE_URL = getBaseUrl();
 
 export const AppProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token") || null);
