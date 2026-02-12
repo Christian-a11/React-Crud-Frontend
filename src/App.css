@@ -1,0 +1,183 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+@import "tailwindcss";
+
+/* Base styles and theme defaults */
+* {
+  @apply transition-colors duration-300;
+}
+
+html {
+  @apply bg-gray-50 text-gray-900;
+}
+
+html.light {
+  @apply bg-gray-50 text-gray-900;
+  color-scheme: light;
+}
+
+html.dark {
+  @apply bg-gray-900 text-white;
+  color-scheme: dark;
+}
+
+body {
+  @apply font-[Inter] leading-relaxed;
+}
+
+/* Typography */
+.title {
+  @apply text-4xl font-bold text-gray-900 mb-8 px-4 py-6;
+}
+
+html.dark .title {
+  @apply text-white;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply text-gray-900 font-semibold;
+}
+
+html.dark h1,
+html.dark h2,
+html.dark h3,
+html.dark h4,
+html.dark h5,
+html.dark h6 {
+  @apply text-white;
+}
+
+p {
+  @apply text-gray-900;
+}
+
+html.dark p {
+  @apply text-gray-300;
+}
+
+/* Form elements */
+label {
+  @apply block text-sm font-semibold text-gray-900 mb-2;
+}
+
+html.dark label {
+  @apply text-gray-300;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+  @apply w-full px-4 py-3 rounded-lg border border-gray-300 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all duration-200;
+}
+
+html.dark input[type="text"],
+html.dark input[type="email"],
+html.dark input[type="password"],
+html.dark textarea {
+  @apply border-gray-700 bg-gray-800 text-white focus:ring-offset-gray-900;
+}
+
+input:disabled,
+textarea:disabled {
+  @apply bg-gray-200 cursor-not-allowed opacity-50;
+}
+
+html.dark input:disabled,
+html.dark textarea:disabled {
+  @apply bg-gray-700;
+}
+
+/* Buttons */
+.primary-btn {
+  @apply w-full rounded-lg px-4 py-3 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 shadow-md hover:shadow-lg transition-all duration-200 active:scale-95;
+}
+
+.secondary-btn {
+  @apply w-full rounded-lg px-4 py-3 text-sm font-semibold text-gray-800 bg-gray-200 hover:bg-gray-300 transition-all duration-200;
+}
+
+html.dark .secondary-btn {
+  @apply text-white bg-gray-700 hover:bg-gray-600;
+}
+
+.nav-link {
+  @apply px-3.5 py-2 rounded-lg text-sm font-medium text-gray-600 hover:text-gray-900 transition-all duration-200 no-underline;
+}
+
+html.dark .nav-link {
+  @apply text-gray-300 hover:text-white;
+}
+
+.nav-link:hover {
+  @apply bg-gray-100;
+}
+
+html.dark .nav-link:hover {
+  @apply bg-gray-800;
+}
+
+/* Error messages */
+.error {
+  @apply text-red-600 text-sm font-medium mt-1;
+}
+
+html.dark .error {
+  @apply text-red-400;
+}
+
+/* Links */
+a:not([class]) {
+  @apply text-indigo-600 hover:text-indigo-700 transition-colors duration-200;
+}
+
+html.dark a:not([class]) {
+  @apply text-indigo-400 hover:text-indigo-300;
+}
+
+.text-link {
+  @apply text-indigo-600 font-semibold hover:underline;
+}
+
+html.dark .text-link {
+  @apply text-indigo-400;
+}
+
+/* Utility classes */
+.card {
+  @apply bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300;
+}
+
+html.dark .card {
+  @apply bg-gray-800 border-gray-700;
+}
+
+.gradient-bg {
+  @apply bg-gradient-to-br from-gray-50 to-gray-100;
+}
+
+html.dark .gradient-bg {
+  @apply from-gray-900 to-gray-800;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  @apply w-1.5 h-1.5;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded-full hover:bg-gray-400;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  @apply bg-gray-600 hover:bg-gray-500;
+}
