@@ -12,7 +12,11 @@ export default function Home() {
   async function fetchPosts(page = 1) {
     setLoading(true);
     try {
-      const response = await fetch(`${API_BASE_URL}/api/posts?page=${page}`);
+      const response = await fetch(`${API_BASE_URL}/api/posts?page=${page}`, {
+        headers: {
+          Accept: "application/json",
+        },
+      });
       const data = await response.json();
       if (response.ok) {
         setPosts(data.data);

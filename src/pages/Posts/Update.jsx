@@ -14,7 +14,11 @@ export default function Update() {
 
   async function fetchPosts() {
     try {
-      const response = await fetch(`${API_BASE_URL}/api/posts/${id}`);
+      const response = await fetch(`${API_BASE_URL}/api/posts/${id}`, {
+        headers: {
+          Accept: "application/json",
+        },
+      });
       const data = await response.json(); // data = { post: {...}, user: {...} }
 
       if (response.ok) {
@@ -54,6 +58,8 @@ export default function Update() {
     const response = await fetch(`${API_BASE_URL}/api/posts/${id}`, {
       method: "PUT",
       headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(formData),

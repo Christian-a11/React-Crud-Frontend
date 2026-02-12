@@ -73,6 +73,7 @@ export const AppProvider = ({ children }) => {
     try {
       const response = await fetch(`${API_BASE_URL}/api/user`, {
         headers: {
+          Accept: "application/json",
           Authorization: `Bearer ${token}`,
         },
       });

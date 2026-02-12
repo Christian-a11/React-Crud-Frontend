@@ -15,6 +15,10 @@ export default function Login() {
     e.preventDefault();
     const response = await fetch(`${API_BASE_URL}/api/login`, {
       method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(formData),
     });
     const data = await response.json();

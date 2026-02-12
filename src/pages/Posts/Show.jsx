@@ -8,7 +8,11 @@ export default function Show() {
   const navigate = useNavigate();
 
   async function fetchPost() {
-    const response = await fetch(`${API_BASE_URL}/api/posts/${id}`);
+    const response = await fetch(`${API_BASE_URL}/api/posts/${id}`, {
+      headers: {
+        Accept: "application/json",
+      },
+    });
     const data = await response.json();
     if (response.ok) {
       setPost(data.post || data);
@@ -33,6 +37,7 @@ export default function Show() {
       const response = await fetch(`${API_BASE_URL}/api/posts/${id}`, {
         method: "DELETE",
         headers: {
+          Accept: "application/json",
           Authorization: `Bearer ${token}`,
         },
       });

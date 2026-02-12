@@ -12,6 +12,7 @@ export default function Layout() {
     const response = await fetch(`${API_BASE_URL}/api/logout`, {
       method: "POST",
       headers: {
+        Accept: "application/json",
         Authorization: `Bearer ${token}`,
       },
     });

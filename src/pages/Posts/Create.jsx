@@ -16,6 +16,8 @@ export default function Create() {
     const response = await fetch(`${API_BASE_URL}/api/posts`, {
       method: "POST",
       headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(formData),
