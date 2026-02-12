@@ -165,8 +165,27 @@ export default function Home() {
                 </button>
 
                 <div className="flex items-center gap-1 sm:gap-1.5 px-1 sm:px-2">
+                  <div className="hidden sm:flex items-center gap-1">
+                    {Array.from({ length: lastPage }, (_, i) => i + 1).map(
+                      (page) => (
+                        <button
+                          key={page}
+                          onClick={() => fetchPosts(page)}
+                          className={`px-3 py-2 rounded-lg font-semibold transition-all text-sm ${
+                            currentPage === page
+                              ? "bg-indigo-600 text-white"
+                              : theme === "dark"
+                                ? "bg-gray-700 text-gray-300 hover:bg-gray-600"
+                                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                          }`}
+                        >
+                          {page}
+                        </button>
+                      ),
+                    )}
+                  </div>
                   <span
-                    className={`text-xs sm:text-sm font-bold ${theme === "dark" ? "text-gray-300" : "text-gray-600"}`}
+                    className={`sm:hidden text-xs font-bold ${theme === "dark" ? "text-gray-300" : "text-gray-600"}`}
                   >
                     {currentPage} / {lastPage}
                   </span>
