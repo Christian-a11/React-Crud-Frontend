@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AppContext, API_BASE_URL } from "../Context/AppContext.jsx";
 import { Link } from "react-router-dom";
+import { PostSkeleton } from "../components/Skeleton.jsx";
 export default function Home() {
   const { theme } = useContext(AppContext);
   const [posts, setPosts] = useState([]);
@@ -57,7 +58,13 @@ export default function Home() {
           </p>
         </div>
 
-        {posts.length === 0 ? (
+        {loading ? (
+          <div className="space-y-8">
+            {Array.from({ length: 5 }).map((_, index) => (
+              <PostSkeleton key={`skeleton-${index}`} />
+            ))}
+          </div>
+        ) : posts.length === 0 ? (
           <div className="text-center py-20">
             <div
               className={`inline-flex items-center justify-center w-20 h-20 rounded-full mb-6 ${theme === "dark" ? "bg-gray-800" : "bg-gray-100"}`}

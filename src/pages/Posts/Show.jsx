@@ -1,26 +1,35 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { AppContext, API_BASE_URL } from "../../Context/AppContext";
+import { PostDetailSkeleton } from "../../components/Skeleton.jsx";
 export default function Show() {
   const [post, setPost] = useState(null);
+  const [loading, setLoading] = useState(true);
   const { id } = useParams();
   const { user, token, theme } = useContext(AppContext);
   const navigate = useNavigate();
 
   async function fetchPost() {
-    const response = await fetch(`${API_BASE_URL}/api/posts/${id}`, {
-      headers: {
-        Accept: "application/json",
-      },
-    });
-    const data = await response.json();
-    if (response.ok) {
-      setPost(data.post || data);
-    } else {
-      console.error("Failed to fetch post:", {
-        status: response.status,
-        data: data,
+    setLoading(true);
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/posts/${id}`, {
+        headers: {
+          Accept: "application/json",
+        },
       });
+      const data = await response.json();
+      if (response.ok) {
+        setPost(data.post || data);
+      } else {
+        console.error("Failed to fetch post:", {
+          status: response.status,
+          data: data,
+        });
+      }
+    } catch (error) {
+      console.error("Error fetching post:", error);
+    } finally {
+      setLoading(false);
     }
   }
   useEffect(() => {
@@ -60,7 +69,9 @@ export default function Show() {
       className={`min-h-screen py-12 px-4 sm:px-6 lg:px-8 ${theme === "dark" ? "bg-gray-900 text-white" : "bg-gray-50 text-gray-900"}`}
     >
       <div className="max-w-4xl mx-auto">
-        {post ? (
+        {loading ? (
+          <PostDetailSkeleton />
+        ) : post ? (
           <div
             className={`overflow-hidden rounded-2xl border ${theme === "dark" ? "bg-gray-800/50 border-gray-700" : "bg-white border-gray-200"}`}
           >
