@@ -16,14 +16,17 @@ export default function Layout() {
         Authorization: `Bearer ${token}`,
       },
     });
-    const data = await response.json();
     if (response.ok) {
       localStorage.removeItem("token");
       setToken(null);
       setUser(null);
       navigate("/");
     } else {
-      console.error("Logout failed");
+      const data = await response.json().catch(() => ({}));
+      console.error("Logout failed:", {
+        status: response.status,
+        data: data,
+      });
     }
   }
   return (

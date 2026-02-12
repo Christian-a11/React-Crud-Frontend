@@ -24,8 +24,14 @@ export default function Create() {
     });
 
     const data = await response.json();
-    if (data.errors) {
-      setErrors(data.errors);
+    if (!response.ok) {
+      console.error("Post Creation Error:", {
+        status: response.status,
+        data: data,
+      });
+      if (data.errors) {
+        setErrors(data.errors);
+      }
       return;
     } else {
       navigate("/");

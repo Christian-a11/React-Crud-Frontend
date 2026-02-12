@@ -24,8 +24,14 @@ export default function Register() {
       body: JSON.stringify(formData),
     });
     const data = await response.json();
-    if (data.errors) {
-      setErrors(data.errors);
+    if (!response.ok) {
+      console.error("Registration Error:", {
+        status: response.status,
+        data: data,
+      });
+      if (data.errors) {
+        setErrors(data.errors);
+      }
       return;
     } else {
       localStorage.setItem("token", data.token);

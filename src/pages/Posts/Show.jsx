@@ -17,7 +17,10 @@ export default function Show() {
     if (response.ok) {
       setPost(data.post || data);
     } else {
-      console.error("Failed to fetch post");
+      console.error("Failed to fetch post:", {
+        status: response.status,
+        data: data,
+      });
     }
   }
   useEffect(() => {
@@ -45,7 +48,10 @@ export default function Show() {
       if (response.ok) {
         navigate("/");
       } else {
-        console.error("Failed to delete post", data);
+        console.error("Failed to delete post:", {
+          status: response.status,
+          data: data,
+        });
       }
     }
   }

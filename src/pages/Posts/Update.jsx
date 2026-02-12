@@ -37,7 +37,10 @@ export default function Update() {
           body: postData.body,
         });
       } else {
-        console.error("Failed to fetch post");
+        console.error("Failed to fetch post:", {
+          status: response.status,
+          data: data,
+        });
         navigate("/");
       }
     } catch (error) {
@@ -66,8 +69,14 @@ export default function Update() {
     });
 
     const data = await response.json();
-    if (data.errors) {
-      setErrors(data.errors);
+    if (!response.ok) {
+      console.error("Post Update Error:", {
+        status: response.status,
+        data: data,
+      });
+      if (data.errors) {
+        setErrors(data.errors);
+      }
       return;
     } else {
       navigate("/");

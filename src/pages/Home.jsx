@@ -24,7 +24,10 @@ export default function Home() {
         setLastPage(data.last_page);
         setTotal(data.total);
       } else {
-        console.error("Failed to fetch posts");
+        console.error("Failed to fetch posts:", {
+          status: response.status,
+          data: data,
+        });
       }
     } catch (error) {
       console.error("Error fetching posts:", error);
