@@ -161,7 +161,7 @@ export default function Home() {
                   }`}
                 >
                   <span className="sm:hidden">←</span>
-                  <span className="hidden sm:inline">← Previous</span>
+                  <span className="hidden sm:inline">Previous ←</span>
                 </button>
 
                 <div className="flex items-center gap-1 sm:gap-1.5 px-1 sm:px-2">
