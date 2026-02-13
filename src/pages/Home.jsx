@@ -150,7 +150,7 @@ export default function Home() {
                 <button
                   onClick={() => fetchPosts(currentPage - 1)}
                   disabled={currentPage === 1}
-                  className={`px-3 py-2 sm:px-4 sm:py-2 rounded-lg font-semibold transition-all text-xs sm:text-base ${
+                  className={`inline-flex items-center justify-center gap-2 px-3 py-2 sm:px-4 sm:py-2 rounded-lg font-semibold transition-all text-xs sm:text-base ${
                     currentPage === 1
                       ? theme === "dark"
                         ? "bg-gray-700 text-gray-500 cursor-not-allowed"
@@ -166,8 +166,20 @@ export default function Home() {
 
                 <div className="flex items-center gap-1 sm:gap-1.5 px-1 sm:px-2">
                   <div className="hidden sm:flex items-center gap-1">
-                    {Array.from({ length: lastPage }, (_, i) => i + 1).map(
-                      (page) => (
+                    {(() => {
+                      const maxVisiblePages = 10;
+                      let startPage = Math.max(1, currentPage - maxVisiblePages + 1);
+                      let endPage = Math.min(lastPage, startPage + maxVisiblePages - 1);
+
+                      // Adjust startPage if endPage is at lastPage to keep window size consistent if possible
+                      if (endPage === lastPage) {
+                        startPage = Math.max(1, endPage - maxVisiblePages + 1);
+                      }
+
+                      return Array.from(
+                        { length: endPage - startPage + 1 },
+                        (_, i) => startPage + i
+                      ).map((page) => (
                         <button
                           key={page}
                           onClick={() => fetchPosts(page)}
@@ -181,8 +193,8 @@ export default function Home() {
                         >
                           {page}
                         </button>
-                      ),
-                    )}
+                      ));
+                    })()}
                   </div>
                   <span
                     className={`sm:hidden text-xs font-bold ${theme === "dark" ? "text-gray-300" : "text-gray-600"}`}
@@ -194,7 +206,7 @@ export default function Home() {
                 <button
                   onClick={() => fetchPosts(currentPage + 1)}
                   disabled={currentPage === lastPage}
-                  className={`px-3 py-2 sm:px-4 sm:py-2 rounded-lg font-semibold transition-all text-xs sm:text-base ${
+                  className={`inline-flex items-center justify-center gap-2 px-3 py-2 sm:px-4 sm:py-2 rounded-lg font-semibold transition-all text-xs sm:text-base ${
                     currentPage === lastPage
                       ? theme === "dark"
                         ? "bg-gray-700 text-gray-500 cursor-not-allowed"
