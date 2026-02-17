@@ -175,7 +175,6 @@ export default function Home() {
                       if (endPage === lastPage) {
                         startPage = Math.max(1, endPage - maxVisiblePages + 1);
                       }
-
                       return Array.from(
                         { length: endPage - startPage + 1 },
                         (_, i) => startPage + i

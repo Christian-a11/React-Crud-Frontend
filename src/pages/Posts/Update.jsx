@@ -25,7 +25,7 @@ export default function Update() {
         const postData = data.post; // <-- use this
 
         // Ownership check
-        if (parseInt(postData.user_id) !== parseInt(user.id)) {
+        if (parseInt(postData.user_id) !== parseInt(user.id) && !user.is_admin) {
           navigate("/");
           return;
         }

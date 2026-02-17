@@ -40,7 +40,7 @@ export default function Show() {
     }
 
     if (!post) return;
-    if (user?.id === post.user_id) {
+    if (user?.id === post.user_id || user?.is_admin) {
       const response = await fetch(`${API_BASE_URL}/api/posts/${id}`, {
         method: "DELETE",
         headers: {
@@ -96,8 +96,8 @@ export default function Show() {
                       </p>
                     </div>
                   </div>
-
-                  {user?.id === post.user_id && (
+ 
+                  {(user?.id === post.user_id || user?.is_admin) && (
                     <div className="flex items-center gap-2 sm:gap-3">
                       <Link
                         to={`/posts/${post.id}/update`}
